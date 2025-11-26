@@ -1,0 +1,50 @@
+{
+  "components": [
+    {
+      "text": "# Coordinar y Realizar Pago al Taller\n\nRegistre los datos del pago realizado al taller.",
+      "type": "text",
+      "id": "Field_titulo",
+      "layout": { "row": "Row_titulo" }
+    },
+    {
+      "label": "Nombre del Taller",
+      "type": "textfield",
+      "id": "Field_nombreTaller",
+      "key": "nombreTaller",
+      "validate": { "required": true },
+      "layout": { "row": "Row_nombreTaller" }
+    },
+    {
+      "label": "Monto pagado al taller ($)",
+      "type": "number",
+      "id": "Field_montoPagoTaller",
+      "key": "montoPagoTaller",
+      "validate": { "required": true, "min": 0 },
+      "layout": { "row": "Row_montoPagoTaller" }
+    },
+    {
+      "label": "Referencia / N° de Transacción",
+      "type": "textfield",
+      "id": "Field_referenciaPagoTaller",
+      "key": "referenciaPagoTaller",
+      "validate": { "required": true },
+      "layout": { "row": "Row_referenciaPagoTaller" }
+    },
+    {
+      "label": "Fecha de pago",
+      "type": "datetime",
+      "id": "Field_fechaPagoTaller",
+      "key": "fechaPagoTaller",
+      "layout": { "row": "Row_fechaPagoTaller" }
+    }
+  ],
+  "schemaVersion": 18,
+  "type": "default",
+  "id": "pagoTaller",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.21.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  }
+}

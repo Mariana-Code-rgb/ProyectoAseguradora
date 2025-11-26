@@ -1,0 +1,77 @@
+<form role="form" name="camundaForm">
+    <style>
+        .card-approve {
+            max-width: 640px;
+            margin: 20px auto;
+            padding: 24px 22px;
+            border-radius: 18px;
+            background: radial-gradient(circle at top, #22c55e 0, #064e3b 45%, #020617 100%);
+            box-shadow: 0 22px 60px rgba(22, 163, 74, 0.9);
+            color: #ecfdf5;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        .card-approve h1 {
+            font-size: 1.4rem;
+            margin: 0 0 6px;
+        }
+        .card-approve p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #bbf7d0;
+        }
+        .field {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        .field label { font-weight: 500; }
+        .field input,
+        .field textarea {
+            border-radius: 10px;
+            border: 1px solid rgba(52, 211, 153, 0.7);
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            background: rgba(6, 95, 70, 0.8);
+            color: #ecfdf5;
+            outline: none;
+        }
+        .field input[readonly] {
+            opacity: 0.85;
+            background: rgba(15, 118, 110, 0.8);
+        }
+        .field textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+    </style>
+
+    <div class="card-approve">
+        <h1>Revisar Informe y Aprobar Monto</h1>
+        <p>Valida el informe del ajustador y define el monto a evaluar en el DMN.</p>
+
+        <div class="field">
+            <label>Monto propuesto por ajustador ($)</label>
+            <input cam-variable-name="montoEstimado"
+                   cam-variable-type="Double"
+                   readonly>
+        </div>
+
+        <div class="field">
+            <label>Monto a evaluar en la decisión ($)</label>
+            <input type="number"
+                   min="0"
+                   step="0.01"
+                   cam-variable-name="montoReclamado"
+                   cam-variable-type="Double"
+                   required>
+        </div>
+
+        <div class="field">
+            <label>Comentario de gerencia</label>
+            <textarea cam-variable-name="comentarioGerencia"
+                      cam-variable-type="String"></textarea>
+        </div>
+    </div>
+</form>

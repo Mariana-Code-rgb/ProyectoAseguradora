@@ -1,0 +1,48 @@
+{
+  "components": [
+    {
+      "text": "# Evaluar Daños\n\nRegistre el nivel de daños y observaciones del ajustador.",
+      "type": "text",
+      "id": "Field_titulo",
+      "layout": { "row": "Row_titulo" }
+    },
+    {
+      "label": "Nivel de Daños",
+      "type": "select",
+      "id": "Field_nivelDanios",
+      "key": "nivelDanios",
+      "values": [
+        { "label": "Bajo", "value": "BAJO" },
+        { "label": "Medio", "value": "MEDIO" },
+        { "label": "Alto", "value": "ALTO" }
+      ],
+      "validate": { "required": true },
+      "layout": { "row": "Row_nivelDanios" }
+    },
+    {
+      "label": "Descripción de los daños",
+      "type": "textarea",
+      "id": "Field_observacionesDanios",
+      "key": "observacionesDanios",
+      "rows": 4,
+      "layout": { "row": "Row_observacionesDanios" }
+    },
+    {
+      "label": "Monto estimado de reparación ($)",
+      "type": "number",
+      "id": "Field_montoEstimado",
+      "key": "montoEstimado",
+      "validate": { "required": true, "min": 0 },
+      "layout": { "row": "Row_montoEstimado" }
+    }
+  ],
+  "schemaVersion": 18,
+  "type": "default",
+  "id": "evaluarDanios",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  }
+}

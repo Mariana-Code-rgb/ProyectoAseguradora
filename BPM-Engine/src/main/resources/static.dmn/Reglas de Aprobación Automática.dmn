@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0b5kyk4" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.33.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <decision id="decision_aprobacion_riesgo" name="Reglas de Aprobación Automática" camunda:historyTimeToLive="1">
+    <decisionTable id="DecisionTable_1bqvbuc" hitPolicy="FIRST">
+      <input id="Input_1" label="Antigüedad Cliente (años)">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text>antiguedadCliente</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0irgrhn" label="Historial Siniestralidad">
+        <inputExpression id="LiteralExpression_1b8qnl1" typeRef="string">
+          <text>historialSiniestralidad</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ee7e64" label="Reporte C. Riesgo">
+        <inputExpression id="LiteralExpression_110nfco" typeRef="string">
+          <text>reporteRiesgo</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Requiere Evaluación Humana" name="requiereEvaluacionHumana" typeRef="boolean" />
+      <output id="Output_2" label="Suscripción Aprobada" name="suscripcionAprobada" typeRef="boolean" />
+      <output id="OutputClause_1yfh1xh" label="Ajuste de Prima" name="ajustePrima" typeRef="string" />
+      <rule id="DecisionRule_1fo42ze">
+        <description>Cualquier cliente con reporte crediticio negativo</description>
+        <inputEntry id="UnaryTests_0p0jxmc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wxhro2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0k1eppn">
+          <text>"Negativo"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_Output1_R4">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_Output2_R4">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_02xz6t8">
+          <text>"0%"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_055q9yu">
+        <description>Cualquier cliente con alto historial de siniestros</description>
+        <inputEntry id="UnaryTests_0o2k4ej">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1izvjih">
+          <text>"Alto"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v0x459">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_Output1_R3">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_Output2_R3">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0y6189t">
+          <text>"0%"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1g51e5g">
+        <description>Cliente con menos de 1 año pero historial limpio</description>
+        <inputEntry id="UnaryTests_0mm8shm">
+          <text>&lt; 1</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1u7x7ee">
+          <text>"Limpio"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bm88ek">
+          <text>"Positivo"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_Output1_R5">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_Output2_R5">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0zoo2xo">
+          <text>"+5%"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00hp630">
+        <description>Casos que no cumplen reglas específicas requieren evaluación manual</description>
+        <inputEntry id="UnaryTests_0oucw48">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1y9angv">
+          <text>"Bajo"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16tkvyd">
+          <text>"Positivo"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_Output1_R6">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_Output2_R6">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1wwucyo">
+          <text>"0%"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_191yspt">
+        <description>Cliente con más de 5 años, sin siniestros y buen reporte crediticio</description>
+        <inputEntry id="UnaryTests_1wszdrh">
+          <text>&gt; 5</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qviiea">
+          <text>"Limpio"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0djet76">
+          <text>"Positivo"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_Output1_R1">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_Output2_R1">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ldxrt1">
+          <text>"-5%"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0comdga">
+        <description>Cliente con más de 2 años, siniestros bajos y buen reporte</description>
+        <inputEntry id="UnaryTests_11c96lx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yzgd9e">
+          <text>"Limpio"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02rqggy">
+          <text>"Positivo"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_Output1_R2">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_Output2_R2">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_03409nz">
+          <text>"+10%"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ilf3f1">
+        <inputEntry id="UnaryTests_0imkflm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03scbqo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gymdqw">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05603f4">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_11qd9kj">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0n71sbr">
+          <text>"0%"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="decision_aprobacion_riesgo">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

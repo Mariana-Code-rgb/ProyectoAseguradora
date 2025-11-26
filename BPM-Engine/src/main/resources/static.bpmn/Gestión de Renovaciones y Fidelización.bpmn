@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_17770pa" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.33.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <bpmn:collaboration id="Collaboration_1rst1it">
+    <bpmn:participant id="Participant_0hkzvnx" name="Aseguradora" processRef="Process_1fthirz" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1fthirz" isExecutable="true" camunda:historyTimeToLive="1">
+    <bpmn:laneSet id="LaneSet_1o5rdeo">
+      <bpmn:lane id="Lane_1rht95n" name="Agente de Retención">
+        <bpmn:flowNodeRef>Call_GestionRenovacion</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_151eiz7" name="Sistema / Operaciones">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1r4rwyw</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_138ibql</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0k41v1v</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0k7kodj</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="Flow_13h2w6t" sourceRef="Call_GestionRenovacion" targetRef="Event_0k7kodj" />
+    <bpmn:sequenceFlow id="Flow_1q8nen9" name="Si" sourceRef="Gateway_1r4rwyw" targetRef="Call_GestionRenovacion">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${not empty polizasARenovar}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_09gwqo4" name="No" sourceRef="Gateway_1r4rwyw" targetRef="Event_0k41v1v">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${empty polizasARenovar}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_19vsudy" sourceRef="Activity_138ibql" targetRef="Gateway_1r4rwyw" />
+    <bpmn:sequenceFlow id="Flow_1fk3cze" sourceRef="StartEvent_1" targetRef="Activity_138ibql" />
+    <bpmn:callActivity id="Call_GestionRenovacion" name="Gestionar Renovación" calledElement="GeReIn">
+      <bpmn:extensionElements>
+        <camunda:in source="poliza" target="poliza" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1q8nen9</bpmn:incoming>
+      <bpmn:outgoing>Flow_13h2w6t</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics camunda:collection="${polizasARenovar}" camunda:elementVariable="poliza" />
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_0k7kodj" name="Proceso Finalizado">
+      <bpmn:incoming>Flow_13h2w6t</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_0k41v1v" name="Proceso terminado">
+      <bpmn:incoming>Flow_09gwqo4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_138ibql" name="Consultar Pólizas que Vencen en 60 Días" camunda:delegateExpression="${consultarPolizasRenovacionDelegate}">
+      <bpmn:incoming>Flow_1fk3cze</bpmn:incoming>
+      <bpmn:outgoing>Flow_19vsudy</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_1r4rwyw" name="¿Se encontraron pólizas?">
+      <bpmn:incoming>Flow_19vsudy</bpmn:incoming>
+      <bpmn:outgoing>Flow_09gwqo4</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1q8nen9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:startEvent id="StartEvent_1" name="60 Días para Vencimiento">
+      <bpmn:outgoing>Flow_1fk3cze</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1hr12jh">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1rst1it">
+      <bpmndi:BPMNShape id="Participant_0hkzvnx_di" bpmnElement="Participant_0hkzvnx" isHorizontal="true">
+        <dc:Bounds x="132" y="83" width="838" height="427" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_151eiz7_di" bpmnElement="Lane_151eiz7" isHorizontal="true">
+        <dc:Bounds x="162" y="83" width="808" height="257" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1rht95n_di" bpmnElement="Lane_1rht95n" isHorizontal="true">
+        <dc:Bounds x="162" y="340" width="808" height="170" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0174d6d_di" bpmnElement="Call_GestionRenovacion">
+        <dc:Bounds x="630" y="390" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0k7kodj_di" bpmnElement="Event_0k7kodj">
+        <dc:Bounds x="842" y="242" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="835" y="285" width="51" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0k41v1v_di" bpmnElement="Event_0k41v1v">
+        <dc:Bounds x="662" y="112" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="657" y="155" width="48" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zrbj6q_di" bpmnElement="Activity_138ibql">
+        <dc:Bounds x="320" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1r4rwyw_di" bpmnElement="Gateway_1r4rwyw" isMarkerVisible="true">
+        <dc:Bounds x="505" y="235" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="439" y="216" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0zeljqg_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="222" y="242" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="209" y="285" width="63" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_13h2w6t_di" bpmnElement="Flow_13h2w6t">
+        <di:waypoint x="730" y="430" />
+        <di:waypoint x="776" y="430" />
+        <di:waypoint x="776" y="260" />
+        <di:waypoint x="842" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q8nen9_di" bpmnElement="Flow_1q8nen9">
+        <di:waypoint x="530" y="285" />
+        <di:waypoint x="530" y="430" />
+        <di:waypoint x="630" y="430" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="533" y="414" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09gwqo4_di" bpmnElement="Flow_09gwqo4">
+        <di:waypoint x="530" y="235" />
+        <di:waypoint x="530" y="130" />
+        <di:waypoint x="662" y="130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="532" y="103" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19vsudy_di" bpmnElement="Flow_19vsudy">
+        <di:waypoint x="420" y="260" />
+        <di:waypoint x="505" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fk3cze_di" bpmnElement="Flow_1fk3cze">
+        <di:waypoint x="258" y="260" />
+        <di:waypoint x="320" y="260" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

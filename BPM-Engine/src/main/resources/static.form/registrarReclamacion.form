@@ -1,0 +1,118 @@
+{
+  "components": [
+    {
+      "text": "# Registrar Reclamación\n\nIngrese los datos iniciales del siniestro.",
+      "type": "text",
+      "id": "Field_titulo",
+      "layout": {
+        "row": "Row_titulo"
+      }
+    },
+    {
+      "label": "Número de Póliza",
+      "type": "textfield",
+      "id": "Field_numPoliza",
+      "key": "numeroPoliza",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_numPoliza"
+      }
+    },
+    {
+      "label": "Nombre del Asegurado",
+      "type": "textfield",
+      "id": "Field_nombreAsegurado",
+      "key": "nombreAsegurado",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_nombreAsegurado"
+      },
+      "readonly": true
+    },
+    {
+      "label": "Fecha del Siniestro (dd/mm/aaaa)",
+      "type": "textfield",
+      "id": "Field_fechaSiniestro",
+      "key": "fechaSiniestro",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_fechaSiniestro"
+      },
+      "properties": {
+        "placeholder": "Ej: 12/03/2026"
+      },
+      "readonly": true
+    },
+    {
+      "label": "Tipo de Siniestro",
+      "values": [
+        {
+          "label": "Colisión",
+          "value": "colision"
+        },
+        {
+          "label": "Robo",
+          "value": "robo"
+        },
+        {
+          "label": "Daños a terceros",
+          "value": "danios_terceros"
+        },
+        {
+          "label": "Otros",
+          "value": "otros"
+        }
+      ],
+      "type": "select",
+      "id": "Field_tipoSiniestro",
+      "key": "tipoSiniestro",
+      "validate": {
+        "required": false
+      },
+      "layout": {
+        "row": "Row_tipoSiniestro"
+      },
+      "properties": {},
+      "readonly": true
+    },
+    {
+      "label": "Monto Reclamado ($)",
+      "type": "number",
+      "id": "Field_montoReclamado",
+      "key": "montoReclamado",
+      "validate": {
+        "required": true,
+        "min": 0
+      },
+      "layout": {
+        "row": "Row_montoReclamado"
+      },
+      "readonly": true
+    },
+    {
+      "label": "Descripción del Siniestro",
+      "type": "textarea",
+      "id": "Field_descripcion",
+      "key": "descripcionSiniestro",
+      "layout": {
+        "row": "Row_descripcion"
+      },
+      "readonly": true
+    }
+  ],
+  "schemaVersion": 18,
+  "type": "default",
+  "id": "registrarReclamacion",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.21.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  }
+}

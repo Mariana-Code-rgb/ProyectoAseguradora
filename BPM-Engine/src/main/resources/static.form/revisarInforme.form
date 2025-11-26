@@ -1,0 +1,43 @@
+{
+  "components": [
+    {
+      "text": "# Revisar Informe y Aprobar Monto\n\nLa gerencia valida el informe del ajustador y define el monto a evaluar.",
+      "type": "text",
+      "id": "Field_titulo",
+      "layout": { "row": "Row_titulo" }
+    },
+    {
+      "label": "Monto propuesto por Ajustador ($)",
+      "type": "number",
+      "id": "Field_montoPropuesto",
+      "key": "montoPropuesto",
+      "disabled": true,
+      "layout": { "row": "Row_montoPropuesto" }
+    },
+    {
+      "label": "Monto a evaluar en la decisión ($)",
+      "type": "number",
+      "id": "Field_montoReclamado",
+      "key": "montoReclamado",
+      "validate": { "required": true, "min": 0 },
+      "layout": { "row": "Row_montoReclamado" }
+    },
+    {
+      "label": "Comentario de Gerencia",
+      "type": "textarea",
+      "id": "Field_comentarioGerencia",
+      "key": "comentarioGerencia",
+      "rows": 4,
+      "layout": { "row": "Row_comentarioGerencia" }
+    }
+  ],
+  "schemaVersion": 18,
+  "type": "default",
+  "id": "revisarInforme",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  }
+}

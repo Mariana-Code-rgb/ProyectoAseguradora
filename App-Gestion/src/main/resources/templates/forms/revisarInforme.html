@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Revisar Informe | App-Gestión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="/">App-Gestión</a>
+        <span class="text-muted">Proceso: Gestión de Reclamaciones</span>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mb-3 fw-bold">Revisar Informe y Aprobar Monto</h2>
+    <p class="text-muted">La gerencia valida el informe del ajustador y define el monto a evaluar.</p>
+
+    <form th:action="@{|/reclamaciones/tarea/${taskId}/complete|}" method="post" class="card p-4 shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label">Monto propuesto por Ajustador ($)</label>
+            <input type="number" step="0.01" min="0" name="montoPropuesto"
+                   class="form-control"
+                   th:value="${variables['montoPropuesto'] != null ? variables['montoPropuesto'].value : 0}"
+                   readonly>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Monto a evaluar en la decisión ($)</label>
+            <input type="number" step="0.01" min="0" name="montoReclamado"
+                   class="form-control" required
+                   th:value="${variables['montoReclamado'] != null ? variables['montoReclamado'].value : 0}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Comentario de Gerencia</label>
+            <textarea name="comentarioGerencia" rows="4" class="form-control"
+                      th:text="${variables['comentarioGerencia'] != null ? variables['comentarioGerencia'].value : ''}"
+                      placeholder="Observaciones de la gerencia sobre el caso"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <a href="/reclamaciones/tareas" class="btn btn-outline-secondary me-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar y continuar</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

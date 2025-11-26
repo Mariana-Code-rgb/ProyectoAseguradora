@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="decidirDescuento" name="Decidir Descuento de Renovación" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.33.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <decision id="decidirDescuentoRenovacion" name="Decidir Descuento de Renovación" camunda:historyTimeToLive="1">
+    <decisionTable id="DecisionTable_1hf938t" hitPolicy="FIRST">
+      <input id="Input_1" label="Antigüedad Cliente (años)" camunda:inputVariable="antiguedadCliente">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text>antiguedadCliente</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1sqebwj" label="Historial Siniestros" camunda:inputVariable="historialSiniestros">
+        <inputExpression id="LiteralExpression_1snm0nq" typeRef="string">
+          <text>historialSiniestros</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Porcentaje Descuento" name="porcentajeDescuento" typeRef="integer" />
+      <output id="OutputClause_0y1ti93" label="Estrategia Retención" name="estrategiaRetencion" typeRef="string" />
+      <rule id="DecisionRule_1gfy4m2">
+        <inputEntry id="UnaryTests_0m2yz72">
+          <text>&gt;=5</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pr1ucx">
+          <text>"BAJO"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0eli47t">
+          <text>20</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0gfmuyh">
+          <text>"ALTA"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cbhx15">
+        <inputEntry id="UnaryTests_1agbbgr">
+          <text>&gt;=3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uwz92j">
+          <text>"BAJO","MEDIO"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0tb4ah7">
+          <text>15</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_15q03dd">
+          <text>"MEDIA"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05p3p0l">
+        <inputEntry id="UnaryTests_1nftzg8">
+          <text>&gt;=1</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vi212y">
+          <text>"BAJO"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vk73ep">
+          <text>10</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1qao73w">
+          <text>"MEDIA"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1rja78b">
+        <description></description>
+        <inputEntry id="UnaryTests_0tv77a6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kj3a3p">
+          <text>"ALTO"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ec7x3m">
+          <text>5</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0zqg4ck">
+          <text>"BAJA"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1n94l4c">
+        <inputEntry id="UnaryTests_1prs9nh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kixq6n">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wnqorx">
+          <text>8</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0imd317">
+          <text>"MEDIA"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="decidirDescuentoRenovacion">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

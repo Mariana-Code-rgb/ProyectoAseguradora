@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pago al Taller | App-Gestión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="/">App-Gestión</a>
+        <span class="text-muted">Proceso: Gestión de Reclamaciones</span>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mb-3 fw-bold">Coordinar y Realizar Pago al Taller</h2>
+    <p class="text-muted">Registre los datos del pago realizado al taller.</p>
+
+    <form th:action="@{|/reclamaciones/tarea/${taskId}/complete|}" method="post" class="card p-4 shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label">Nombre del Taller</label>
+            <input type="text" name="nombreTaller" class="form-control" required
+                   th:value="${variables['nombreTaller'] != null ? variables['nombreTaller'].value : ''}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Monto pagado al taller ($)</label>
+            <input type="number" step="0.01" min="0" name="montoPagoTaller" class="form-control" required
+                   th:value="${variables['montoPagoTaller'] != null ? variables['montoPagoTaller'].value : 0}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Referencia / N° de Transacción</label>
+            <input type="text" name="referenciaPagoTaller" class="form-control" required
+                   th:value="${variables['referenciaPagoTaller'] != null ? variables['referenciaPagoTaller'].value : ''}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Fecha de pago</label>
+            <input type="datetime-local" name="fechaPagoTaller" class="form-control"
+                   th:value="${variables['fechaPagoTaller'] != null ? variables['fechaPagoTaller'].value : ''}">
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <a href="/reclamaciones/tareas" class="btn btn-outline-secondary me-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar y continuar</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

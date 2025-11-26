@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Revisar caso de renovación | App-Gestión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="/">App-Gestión</a>
+        <span class="text-muted">Proceso: Gestión de Renovaciones</span>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mb-3 fw-bold">Revisar caso de renovación</h2>
+    <p class="text-muted">
+        Verifica los datos de la póliza y decide si continuar con la oferta de renovación.
+    </p>
+
+    <form th:action="@{|/renovaciones/tarea/${taskId}/complete|}" method="post" class="card p-4 shadow-sm">
+
+        <!-- Datos principales de la póliza -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Número de póliza</label>
+                <input type="text" class="form-control"
+                       name="numeroPoliza"
+                       th:value="${variables.poliza != null ? variables.poliza.value.numeroPoliza : ''}"
+                       readonly>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Nombre del cliente</label>
+                <input type="text" class="form-control"
+                       name="nombreCliente"
+                       th:value="${variables.poliza != null ? variables.poliza.value.nombreCliente : ''}"
+                       readonly>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Correo del cliente</label>
+                <input type="text" class="form-control"
+                       name="emailCliente"
+                       th:value="${variables.poliza != null ? variables.poliza.value.emailCliente : ''}"
+                       readonly>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Prima actual</label>
+                <input type="text" class="form-control"
+                       name="primaActual"
+                       th:value="${variables.poliza != null ? variables.poliza.value.primaActual : ''}"
+                       readonly>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Antigüedad del cliente (años)</label>
+                <input type="text" class="form-control"
+                       name="antiguedadCliente"
+                       th:value="${variables.poliza != null ? variables.poliza.value.antiguedadCliente : ''}"
+                       readonly>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Historial de siniestros</label>
+                <input type="text" class="form-control"
+                       name="historialSiniestros"
+                       th:value="${variables.poliza != null ? variables.poliza.value.historialSiniestros : ''}"
+                       readonly>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Fecha de vencimiento</label>
+            <input type="text" class="form-control"
+                   name="fechaVencimiento"
+                   th:value="${variables.poliza != null ? variables.poliza.value.fechaVencimiento : ''}"
+                   readonly>
+        </div>
+
+        <!-- Comentarios del agente -->
+        <div class="mb-3">
+            <label class="form-label">Comentarios del agente</label>
+            <textarea class="form-control" rows="3"
+                      name="comentariosAgente"
+                      placeholder="Notas internas sobre este caso de renovación"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <a href="/renovaciones/tareas" class="btn btn-outline-secondary me-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Continuar con la renovación</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

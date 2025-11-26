@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="decidirAprobacion" name="Decidir Aprobación de Reclamación" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.33.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <decision id="decidirAprobacionReclamacion" name="Decidir Aprobación de Reclamación" camunda:historyTimeToLive="1">
+    <decisionTable id="DecisionTable_decidirAprobacion" hitPolicy="FIRST">
+      <input id="Input_monto" label="Monto reclamado" camunda:inputVariable="montoReclamado">
+        <inputExpression id="InputExpression_monto" typeRef="number">
+          <text>montoReclamado</text>
+        </inputExpression>
+      </input>
+      <input id="Input_nivelDanios" label="Nivel de daños" camunda:inputVariable="nivelDanios">
+        <inputExpression id="InputExpression_nivelDanios" typeRef="string">
+          <text>nivelDanios</text>
+        </inputExpression>
+      </input>
+      <input id="Input_historial" label="Historial del cliente" camunda:inputVariable="historialCliente">
+        <inputExpression id="InputExpression_historial" typeRef="string">
+          <text>historialCliente</text>
+        </inputExpression>
+      </input>
+      <output id="Output_aprobada" label="Reclamación aprobada" name="reclamacionAprobada" typeRef="boolean" />
+      <output id="Output_montoAprobado" label="Monto aprobado" name="montoAprobado" typeRef="number" />
+      <output id="Output_requiereSupervisor" label="Revisión de Gerencia" name="requiereSupervisor" typeRef="boolean" />
+      <rule id="DecisionRule_1">
+        <inputEntry id="Rule1_monto">
+          <text>&lt;= 3000</text>
+        </inputEntry>
+        <inputEntry id="Rule1_nivelDanios">
+          <text>"BAJO","MEDIO"</text>
+        </inputEntry>
+        <inputEntry id="Rule1_historial">
+          <text>"BUENO","REGULAR"</text>
+        </inputEntry>
+        <outputEntry id="Rule1_aprobada">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="Rule1_montoAprobado">
+          <text>montoReclamado</text>
+        </outputEntry>
+        <outputEntry id="Rule1_sup">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_2">
+        <inputEntry id="Rule2_monto">
+          <text>(3000..10000]</text>
+        </inputEntry>
+        <inputEntry id="Rule2_nivelDanios">
+          <text>"MEDIO","ALTO"</text>
+        </inputEntry>
+        <inputEntry id="Rule2_historial">
+          <text>"BUENO"</text>
+        </inputEntry>
+        <outputEntry id="Rule2_aprobada">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="Rule2_montoAprobado">
+          <text>montoReclamado * 0.9</text>
+        </outputEntry>
+        <outputEntry id="Rule2_sup">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_3">
+        <inputEntry id="Rule3_monto">
+          <text>&gt; 10000</text>
+        </inputEntry>
+        <inputEntry id="Rule3_nivelDanios">
+          <text>"ALTO"</text>
+        </inputEntry>
+        <inputEntry id="Rule3_historial">
+          <text>"MALO"</text>
+        </inputEntry>
+        <outputEntry id="Rule3_aprobada">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="Rule3_montoAprobado">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="Rule3_sup">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_4">
+        <inputEntry id="Rule4_monto">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="Rule4_nivelDanios">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="Rule4_historial">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="Rule4_aprobada">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="Rule4_montoAprobado">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="Rule4_sup">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_156p9ti">
+        <inputEntry id="UnaryTests_1wvyf1a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i6hjl8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08q3vv3">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0shq8u9">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1nt39gk">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_15brpoh">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="decidirAprobacionReclamacion">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

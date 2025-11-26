@@ -1,0 +1,39 @@
+{
+  "components": [
+    {
+      "text": "# Archivar Expediente\n\nComplete la información final antes de cerrar y archivar la reclamación.",
+      "type": "text",
+      "id": "Field_titulo",
+      "layout": { "row": "Row_titulo" }
+    },
+    {
+      "label": "Estado final de la reclamación",
+      "type": "select",
+      "id": "Field_estadoFinal",
+      "key": "estadoFinalReclamacion",
+      "values": [
+        { "label": "Cerrada y pagada", "value": "CERRADA_PAGADA" },
+        { "label": "Rechazada", "value": "RECHAZADA" }
+      ],
+      "validate": { "required": true },
+      "layout": { "row": "Row_estadoFinal" }
+    },
+    {
+      "label": "Observaciones de cierre",
+      "type": "textarea",
+      "id": "Field_observacionesCierre",
+      "key": "observacionesCierre",
+      "rows": 4,
+      "layout": { "row": "Row_observacionesCierre" }
+    }
+  ],
+  "schemaVersion": 18,
+  "type": "default",
+  "id": "archivarExpediente",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  }
+}

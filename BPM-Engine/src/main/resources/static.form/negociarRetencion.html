@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Negociar Retención de Cliente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .required {
+            color: red;
+        }
+        .info-box {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Contactar Cliente para Negociar Retención</h2>
+
+    <div class="info-box">
+        <p><strong>Instrucciones:</strong> Contacte al cliente y ofrezca condiciones especiales para retenerlo. Registre la oferta propuesta y el resultado de la negociación.</p>
+    </div>
+
+    <form name="negociarRetencionForm">
+        <div class="form-group">
+            <label for="numeroPoliza">Número de Póliza:</label>
+            <input
+                    type="text"
+                    id="numeroPoliza"
+                    cam-variable-name="numeroPoliza"
+                    cam-variable-type="String"
+                    readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="nombreCliente">Nombre Cliente:</label>
+            <input
+                    type="text"
+                    id="nombreCliente"
+                    cam-variable-name="nombreCliente"
+                    cam-variable-type="String"
+                    readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="ofertaEspecial">Oferta Especial Propuesta: <span class="required">*</span></label>
+            <input
+                    type="text"
+                    id="ofertaEspecial"
+                    cam-variable-name="ofertaEspecial"
+                    cam-variable-type="String"
+                    placeholder="Ej: 15% descuento por 1 año, cobertura adicional sin costo..."
+                    required />
+        </div>
+
+        <div class="form-group">
+            <label for="notasAgente">Notas del Agente:</label>
+            <textarea
+                    id="notasAgente"
+                    cam-variable-name="notasAgente"
+                    cam-variable-type="String"
+                    rows="3"
+                    placeholder="Detalles de la conversación, objeciones del cliente, acuerdos alcanzados..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="seLogroRetener">¿Se logró retener al cliente? <span class="required">*</span></label>
+            <select
+                    id="seLogroRetener"
+                    cam-variable-name="seLogroRetener"
+                    cam-variable-type="Boolean"
+                    required>
+                <option value="">-- Seleccione --</option>
+                <option value="true">Sí - Cliente acepta renovar con nueva oferta</option>
+                <option value="false">No - Cliente confirma que no renovará</option>
+            </select>
+        </div>
+    </form>
+</div>
+
+<script src="forms/camunda-forms-sdk.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "components": [
+    {
+      "text": "# Elaborar Informe de Ajuste\n\nConsolide la información del siniestro y la evaluación de daños.",
+      "type": "text",
+      "id": "Field_titulo",
+      "layout": { "row": "Row_titulo" }
+    },
+    {
+      "label": "Resumen del Informe",
+      "type": "textarea",
+      "id": "Field_informeAjustador",
+      "key": "informeAjustador",
+      "rows": 5,
+      "validate": { "required": true },
+      "layout": { "row": "Row_informeAjustador" }
+    },
+    {
+      "label": "Monto sugerido para la reclamación ($)",
+      "type": "number",
+      "id": "Field_montoReclamado",
+      "key": "montoReclamado",
+      "validate": { "required": true, "min": 0 },
+      "layout": { "row": "Row_montoReclamado" }
+    }
+  ],
+  "schemaVersion": 18,
+  "type": "default",
+  "id": "elaborarInformeReclamacion",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  }
+}

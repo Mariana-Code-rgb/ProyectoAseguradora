@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contactar cliente para negociar retención | App-Gestión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="/">App-Gestión</a>
+        <span class="text-muted">Proceso: Gestión de Renovaciones</span>
+    </div>
+</nav>
+
+<div class="container" style="max-width: 800px;">
+    <h2 class="mb-3 fw-bold">Contactar cliente para negociar retención</h2>
+    <p class="text-muted">
+        Registra el resultado de la negociación con el cliente.
+    </p>
+
+    <form th:action="@{|/renovaciones/tarea/${taskId}/complete|}" method="post" class="card p-4 shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">¿Se logró retener al cliente?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="seLogroRetener" id="retenerSi" value="true" required>
+                <label class="form-check-label" for="retenerSi">
+                    Sí, el cliente aceptó renovar después de la negociación.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="seLogroRetener" id="retenerNo" value="false">
+                <label class="form-check-label" for="retenerNo">
+                    No, el cliente decidió no renovar.
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Comentarios de la negociación</label>
+            <textarea class="form-control" name="comentariosRetencion" rows="3"
+                      placeholder="Anota los puntos clave de la conversación con el cliente"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <a href="/renovaciones/tareas" class="btn btn-outline-secondary me-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar resultado</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

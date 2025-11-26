@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrar Reclamación | App-Gestión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="/">App-Gestión</a>
+        <span class="text-muted">Proceso: Gestión de Reclamaciones</span>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mb-3 fw-bold">Registrar Reclamación</h2>
+    <p class="text-muted">Revisa los datos iniciales reportados por el cliente y complementa la información necesaria.</p>
+
+    <form th:action="@{|/reclamaciones/tarea/${taskId}/complete|}" method="post" class="card p-4 shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label">Número de póliza</label>
+            <input type="text" class="form-control"
+                   name="numeroPoliza"
+                   th:value="${variables.numeroPoliza != null ? variables.numeroPoliza.value : ''}"
+                   readonly>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label class="form-label">Nombre del asegurado</label>
+                <input type="text" class="form-control"
+                       name="nombreAsegurado"
+                       th:value="${variables.nombreAsegurado != null ? variables.nombreAsegurado.value : ''}"
+                       readonly>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label">Teléfono de contacto</label>
+                <input type="text" class="form-control"
+                       name="telefonoContacto"
+                       th:value="${variables.telefonoContacto != null ? variables.telefonoContacto.value : ''}"
+                       readonly>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label class="form-label">Fecha del siniestro</label>
+                <input type="text" class="form-control"
+                       name="fechaSiniestro"
+                       th:value="${variables.fechaSiniestro != null ? variables.fechaSiniestro.value : ''}"
+                       readonly>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label">Tipo de siniestro</label>
+                <input type="text" class="form-control"
+                       name="tipoSiniestro"
+                       th:value="${variables.tipoSiniestro != null ? variables.tipoSiniestro.value : ''}"
+                       readonly>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Monto reclamado ($)</label>
+            <input type="number" step="0.01" min="0" class="form-control"
+                   name="montoReclamado"
+                   th:value="${variables.montoReclamado != null ? variables.montoReclamado.value : 0}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción del siniestro</label>
+            <textarea class="form-control" rows="4"
+                      name="descripcionSiniestro"
+                      th:text="${variables.descripcionSiniestro != null ? variables.descripcionSiniestro.value : ''}"
+                      readonly></textarea>
+        </div>
+
+        <!-- Aquí puedes agregar campos internos para el ajustador (observaciones, número de caso, etc.) -->
+
+        <div class="d-flex justify-content-end mt-3">
+            <a href="/reclamaciones/tareas" class="btn btn-outline-secondary me-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar y continuar</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

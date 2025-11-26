@@ -1,0 +1,97 @@
+{
+  "components": [
+    {
+      "text": "# Elaborar Cotización de Póliza\n\nComplete los datos del cliente para generar una cotización.",
+      "type": "text",
+      "id": "Field_titulo",
+      "layout": {
+        "row": "Row_1fks8hh"
+      }
+    },
+    {
+      "label": "Nombre del Cliente",
+      "type": "textfield",
+      "id": "Field_nombre",
+      "key": "nombreCliente",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_09oflfq"
+      }
+    },
+    {
+      "label": "Correo Electrónico",
+      "type": "textfield",
+      "id": "Field_email",
+      "key": "emailCliente",
+      "validate": {
+        "required": true,
+        "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+      },
+      "description": "Correo donde se enviará la cotización",
+      "layout": {
+        "row": "Row_17ctqf5"
+      }
+    },
+    {
+      "label": "Tipo de Producto",
+      "values": [
+        {
+          "label": "Vida",
+          "value": "vida"
+        },
+        {
+          "label": "Salud",
+          "value": "salud"
+        },
+        {
+          "label": "Vehículo",
+          "value": "vehiculo"
+        }
+      ],
+      "type": "select",
+      "id": "Field_producto",
+      "key": "tipoProducto",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_18jvynh"
+      }
+    },
+    {
+      "label": "Prima Anual ($)",
+      "type": "number",
+      "id": "Field_prima",
+      "key": "primaAnual",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_02dzfgf"
+      }
+    },
+    {
+      "label": "Monto Asegurado ($)",
+      "type": "number",
+      "id": "Field_monto",
+      "key": "montoAsegurado",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_15ljyio"
+      }
+    }
+  ],
+  "schemaVersion": 18,
+  "type": "default",
+  "id": "elaborarCotizacion",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.21.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family:Arial">
+<h2>Hola {{nombre}},</h2>
+
+<p>Te enviamos la cotización solicitada:</p>
+<ul>
+    <li><b>Producto:</b> {{producto}}</li>
+    <li><b>Prima anual:</b> ${{prima}}</li>
+    <li><b>Monto asegurado:</b> ${{monto}}</li>
+</ul>
+
+<p>¿Deseas continuar?</p>
+
+<a href="{{aceptarUrl}}"
+   style="background:#4CAF50;color:white;padding:10px 20px;text-decoration:none;border-radius:4px">
+    ✅ Aceptar
+</a>
+&nbsp;&nbsp;
+<a href="{{rechazarUrl}}"
+   style="background:#f44336;color:white;padding:10px 20px;text-decoration:none;border-radius:4px">
+    ❌ Rechazar
+</a>
+
+<p style="margin-top:40px;font-size:12px;color:#888">
+    Si el botón no funciona copia y pega esta URL en tu navegador:<br>
+    {{aceptarUrl}}
+</p>
+</body>
+</html>
+</html>

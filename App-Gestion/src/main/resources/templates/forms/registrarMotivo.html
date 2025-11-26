@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrar motivo de no renovación | App-Gestión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="/">App-Gestión</a>
+        <span class="text-muted">Proceso: Gestión de Renovaciones</span>
+    </div>
+</nav>
+
+<div class="container" style="max-width: 800px;">
+    <h2 class="mb-3 fw-bold">Registrar motivo de no renovación</h2>
+    <p class="text-muted">
+        Indica la razón por la cual el cliente decidió no renovar su póliza.
+    </p>
+
+    <form th:action="@{|/renovaciones/tarea/${taskId}/complete|}" method="post" class="card p-4 shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Motivo principal</label>
+            <select class="form-select" name="motivoNoRenovacion" required>
+                <option value="">Selecciona un motivo...</option>
+                <option value="PRECIO_ALTO">Precio demasiado alto</option>
+                <option value="SE_CAMBIO_DE_ASEGURADORA">Se cambió de aseguradora</option>
+                <option value="YA_NO_REQUIERE_COBERTURA">Ya no requiere la cobertura</option>
+                <option value="MALA_EXPERIENCIA">Mala experiencia previa</option>
+                <option value="OTRO">Otro</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Comentarios adicionales</label>
+            <textarea class="form-control" name="comentariosNoRenovacion" rows="3"
+                      placeholder="Detalles adicionales sobre la decisión del cliente"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <a href="/renovaciones/tareas" class="btn btn-outline-secondary me-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar motivo</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

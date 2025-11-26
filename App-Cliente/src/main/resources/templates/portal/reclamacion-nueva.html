@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notificar Siniestro | Seguros Camunda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="/">Seguros Camunda</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Notificar un Siniestro</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">
+                        Diligencia los datos básicos del siniestro para que podamos iniciar la gestión de tu reclamación.
+                    </p>
+
+                    <form th:action="@{/portal/reclamaciones/enviar}" method="post" class="mt-3">
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo electrónico</label>
+                            <input type="email" name="emailCliente" class="form-control" required
+                                   th:value="${email}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre completo</label>
+                            <input type="text" name="nombreCliente" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono de contacto</label>
+                            <input type="text" name="telefonoContacto" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Número de póliza</label>
+                            <input type="text" name="numeroPoliza" class="form-control" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Tipo de siniestro</label>
+                                <select name="tipoSiniestro" class="form-select" required>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="Colision">Colisión</option>
+                                    <option value="Robo">Robo</option>
+                                    <option value="Daños Terceros">Daños a terceros</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Fecha del siniestro</label>
+                                <input type="date" name="fechaSiniestro" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descripción del siniestro</label>
+                            <textarea name="descripcionSiniestro" rows="4" class="form-control" required
+                                      placeholder="Describe brevemente qué ocurrió"></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <a href="/portal/acceso" class="btn btn-outline-secondary me-2">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                Enviar notificación
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

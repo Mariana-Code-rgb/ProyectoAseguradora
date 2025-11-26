@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Motivo de No Renovación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Registrar Motivo de No Renovación</h2>
+    <form name="registrarMotivoForm">
+        <div class="form-group">
+            <label for="numeroPoliza">Número de Póliza:</label>
+            <input
+                    type="text"
+                    id="numeroPoliza"
+                    cam-variable-name="numeroPoliza"
+                    cam-variable-type="String"
+                    readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="motivoNoRenovacion">Motivo de No Renovación: <span class="required">*</span></label>
+            <textarea
+                    id="motivoNoRenovacion"
+                    cam-variable-name="motivoNoRenovacion"
+                    cam-variable-type="String"
+                    rows="4"
+                    placeholder="Describa el motivo por el cual el cliente no desea renovar..."
+                    required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="observacionesAdicionales">Observaciones Adicionales:</label>
+            <textarea
+                    id="observacionesAdicionales"
+                    cam-variable-name="observacionesAdicionales"
+                    cam-variable-type="String"
+                    rows="3"
+                    placeholder="Información adicional relevante..."></textarea>
+        </div>
+    </form>
+</div>
+
+<script src="forms/camunda-forms-sdk.js"></script>
+</body>
+</html>

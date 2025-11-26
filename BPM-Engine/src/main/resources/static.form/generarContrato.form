@@ -1,0 +1,90 @@
+{
+  "components": [
+    {
+      "text": "## Generar Contrato de Póliza",
+      "type": "text",
+      "id": "Field_Header",
+      "layout": {
+        "row": "Row_0"
+      }
+    },
+    {
+      "label": "Cliente",
+      "type": "textfield",
+      "id": "nombreClienteDisplay",
+      "key": "nombreCliente",
+      "disabled": true,
+      "layout": {
+        "row": "Row_1"
+      }
+    },
+    {
+      "label": "Producto",
+      "type": "textfield",
+      "id": "tipoProductoDisplay",
+      "key": "tipoProducto",
+      "disabled": true,
+      "layout": {
+        "row": "Row_2",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Prima Anual ($)",
+      "type": "number",
+      "id": "primaAnualDisplay",
+      "key": "primaAnual",
+      "disabled": true,
+      "decimalDigits": 2,
+      "layout": {
+        "row": "Row_2",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Monto Asegurado ($)",
+      "type": "number",
+      "id": "montoAseguradoDisplay",
+      "key": "montoAsegurado",
+      "disabled": true,
+      "decimalDigits": 2,
+      "layout": {
+        "row": "Row_3"
+      }
+    },
+    {
+      "label": "Número de Contrato",
+      "type": "textfield",
+      "id": "numeroContrato",
+      "key": "numeroContrato",
+      "defaultValue": "=string(\"CTR-\" + string(now()))",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_4"
+      }
+    },
+    {
+      "label": "Términos y Condiciones",
+      "type": "textarea",
+      "id": "terminosCondiciones",
+      "key": "terminosCondiciones",
+      "validate": {
+        "required": true,
+        "minLength": 20
+      },
+      "layout": {
+        "row": "Row_5"
+      },
+      "description": "Especifique los términos y condiciones del contrato"
+    }
+  ],
+  "schemaVersion": 18,
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  },
+  "type": "default",
+  "id": "generarContrato"
+}

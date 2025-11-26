@@ -1,0 +1,121 @@
+<form role="form" name="camundaForm">
+    <style>
+        .card {
+            max-width: 620px;
+            margin: 20px auto;
+            padding: 24px 22px;
+            border-radius: 18px;
+            background: #020617;
+            background: radial-gradient(circle at top, #22c55e 0, #022c22 45%, #020617 100%);
+            box-shadow: 0 22px 55px rgba(15, 118, 110, 0.8);
+            color: #ecfdf5;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        .card-header h1 {
+            font-size: 1.4rem;
+            margin: 0 0 6px;
+        }
+        .card-header p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #ccfbf1;
+        }
+        .field {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        .field label {
+            font-weight: 500;
+        }
+        .field input,
+        .field select,
+        .field textarea {
+            border-radius: 10px;
+            border: 1px solid rgba(45, 212, 191, 0.7);
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            background: rgba(6, 78, 59, 0.85);
+            color: #e0f2f1;
+            outline: none;
+        }
+        .field textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        .field input[readonly] {
+            opacity: 0.8;
+            background: rgba(15, 118, 110, 0.7);
+        }
+        .radio-group {
+            display: flex;
+            gap: 18px;
+            margin-top: 4px;
+        }
+        .radio-group label {
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .radio-group input {
+            accent-color: #22c55e;
+        }
+    </style>
+
+    <div class="card">
+        <div class="card-header">
+            <h1>Verificar Póliza</h1>
+            <p>Confirma la vigencia de la póliza y el historial del cliente.</p>
+        </div>
+
+        <div class="field">
+            <label>Número de póliza</label>
+            <input cam-variable-name="numeroPoliza"
+                   cam-variable-type="String"
+                   readonly>
+        </div>
+
+        <div class="field">
+            <label>¿La póliza es válida?</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio"
+                           name="polizaValida"
+                           cam-variable-name="polizaValida"
+                           cam-variable-type="Boolean"
+                           cam-value="true"
+                           required> Sí
+                </label>
+                <label>
+                    <input type="radio"
+                           name="polizaValida"
+                           cam-variable-name="polizaValida"
+                           cam-variable-type="Boolean"
+                           cam-value="false"> No
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>Historial del cliente</label>
+            <select cam-variable-name="historialCliente"
+                    cam-variable-type="String"
+                    required>
+                <option value="">Seleccione...</option>
+                <option value="BUENO">Bueno</option>
+                <option value="REGULAR">Regular</option>
+                <option value="MALO">Malo</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Comentarios de verificación</label>
+            <textarea cam-variable-name="comentariosVerificacion"
+                      cam-variable-type="String"></textarea>
+        </div>
+    </div>
+</form>

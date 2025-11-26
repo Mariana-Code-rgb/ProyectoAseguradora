@@ -1,0 +1,60 @@
+{
+  "components": [
+    {
+      "text": "# Verificar Póliza\n\nConfirme la vigencia y condiciones de la póliza asociada a la reclamación.",
+      "type": "text",
+      "id": "Field_titulo",
+      "layout": { "row": "Row_titulo" }
+    },
+    {
+      "label": "Número de Póliza",
+      "type": "textfield",
+      "id": "Field_numeroPoliza",
+      "key": "numeroPoliza",
+      "disabled": true,
+      "layout": { "row": "Row_numeroPoliza" }
+    },
+    {
+      "label": "¿La póliza es válida?",
+      "type": "radio",
+      "id": "Field_polizaValida",
+      "key": "polizaValida",
+      "values": [
+        { "label": "Sí", "value": true },
+        { "label": "No", "value": false }
+      ],
+      "validate": { "required": true },
+      "layout": { "row": "Row_polizaValida" }
+    },
+    {
+      "label": "Historial del Cliente",
+      "type": "select",
+      "id": "Field_historialCliente",
+      "key": "historialCliente",
+      "values": [
+        { "label": "Bueno", "value": "BUENO" },
+        { "label": "Regular", "value": "REGULAR" },
+        { "label": "Malo", "value": "MALO" }
+      ],
+      "validate": { "required": true },
+      "layout": { "row": "Row_historialCliente" }
+    },
+    {
+      "label": "Comentarios de verificación",
+      "type": "textarea",
+      "id": "Field_comentariosVerificacion",
+      "key": "comentariosVerificacion",
+      "rows": 3,
+      "layout": { "row": "Row_comentariosVerificacion" }
+    }
+  ],
+  "schemaVersion": 18,
+  "type": "default",
+  "id": "verificarPoliza",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.22.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "components": [
+    {
+      "text": "## Evaluación Manual de Riesgo\n\nEl sistema requiere revisión humana para esta solicitud. Revise los datos recopilados y tome una decisión.",
+      "type": "text",
+      "id": "Field_Header",
+      "layout": {
+        "row": "Row_0"
+      }
+    },
+    {
+      "label": "Nombre del Cliente",
+      "type": "textfield",
+      "id": "nombreClienteDisplay",
+      "key": "nombreCliente",
+      "disabled": true,
+      "layout": {
+        "row": "Row_1",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Tipo de Producto",
+      "type": "textfield",
+      "id": "tipoProductoDisplay",
+      "key": "tipoProducto",
+      "disabled": true,
+      "layout": {
+        "row": "Row_1",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Prima Anual ($)",
+      "type": "number",
+      "id": "primaAnualDisplay",
+      "key": "primaAnual",
+      "disabled": true,
+      "decimalDigits": 2,
+      "layout": {
+        "row": "Row_2",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Monto Asegurado ($)",
+      "type": "number",
+      "id": "montoAseguradoDisplay",
+      "key": "montoAsegurado",
+      "disabled": true,
+      "decimalDigits": 2,
+      "layout": {
+        "row": "Row_2",
+        "columns": 8
+      }
+    },
+    {
+      "text": "### Datos de Análisis de Riesgo",
+      "type": "text",
+      "id": "Field_Separator1",
+      "layout": {
+        "row": "Row_3"
+      }
+    },
+    {
+      "label": "Antigüedad del Cliente (años)",
+      "type": "number",
+      "id": "antiguedadClienteDisplay",
+      "key": "antiguedadCliente",
+      "disabled": true,
+      "layout": {
+        "row": "Row_4",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Historial de Siniestralidad",
+      "type": "textfield",
+      "id": "historialSinistralidadDisplay",
+      "key": "historialSiniestralidad",
+      "disabled": true,
+      "layout": {
+        "row": "Row_4",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Reporte de Centrales de Riesgo",
+      "type": "textfield",
+      "id": "reporteRiesgoDisplay",
+      "key": "reporteRiesgo",
+      "disabled": true,
+      "layout": {
+        "row": "Row_5",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Score Crediticio",
+      "type": "number",
+      "id": "scoreCrediticioDisplay",
+      "key": "scoreCrediticio",
+      "disabled": true,
+      "layout": {
+        "row": "Row_5",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Ajuste de Prima Sugerido",
+      "type": "textfield",
+      "id": "ajustePrimaDisplay",
+      "key": "ajustePrima",
+      "disabled": true,
+      "layout": {
+        "row": "Row_6"
+      },
+      "description": "Ajuste sugerido por las reglas automáticas"
+    },
+    {
+      "text": "### Decisión del Suscriptor",
+      "type": "text",
+      "id": "Field_Separator2",
+      "layout": {
+        "row": "Row_7"
+      }
+    },
+    {
+      "label": "¿Aprobar Suscripción?",
+      "values": [
+        {
+          "label": "Aprobar",
+          "value": "true"
+        },
+        {
+          "label": "Rechazar",
+          "value": "false"
+        }
+      ],
+      "type": "select",
+      "id": "suscripcionAprobada",
+      "key": "suscripcionAprobada",
+      "validate": {
+        "required": true
+      },
+      "layout": {
+        "row": "Row_8",
+        "columns": 8
+      }
+    },
+    {
+      "label": "Ajuste Final de Prima (%)",
+      "type": "textfield",
+      "id": "ajustePrimaFinal",
+      "key": "ajustePrimaFinal",
+      "defaultValue": "0",
+      "layout": {
+        "row": "Row_8",
+        "columns": 8
+      },
+      "description": "Ej: -5, 0, +10"
+    },
+    {
+      "label": "Observaciones y Justificación",
+      "type": "textarea",
+      "id": "observaciones",
+      "key": "observaciones",
+      "validate": {
+        "required": true,
+        "minLength": 20
+      },
+      "layout": {
+        "row": "Row_9"
+      },
+      "description": "Justifique su decisión (mínimo 20 caracteres)"
+    }
+  ],
+  "schemaVersion": 18,
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.33.1"
+  },
+  "type": "default",
+  "id": "evaluarRiesgo"
+}

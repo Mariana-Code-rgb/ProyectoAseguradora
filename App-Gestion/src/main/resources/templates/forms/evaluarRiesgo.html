@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Evaluación Manual de Riesgo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+    <h2 class="mb-3">Evaluación Manual de Riesgo</h2>
+    <p class="text-muted">
+        El sistema requiere revisión humana para esta solicitud. Revise la información y registre su decisión.
+    </p>
+    <p class="text-muted">Task ID: <span th:text="${taskId}">id</span></p>
+
+    <!-- Datos básicos del cliente -->
+    <div class="card mb-4">
+        <div class="card-header fw-bold">Datos del Cliente</div>
+        <div class="card-body row g-3">
+
+            <div class="col-md-6">
+                <label class="form-label">Nombre del Cliente</label>
+                <input type="text" class="form-control" disabled
+                       th:value="${variables['nombreCliente'] != null ? variables['nombreCliente'].value : ''}">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Tipo de Producto</label>
+                <input type="text" class="form-control" disabled
+                       th:value="${variables['tipoProducto'] != null ? variables['tipoProducto'].value : ''}">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Prima Anual ($)</label>
+                <input type="number" class="form-control" disabled
+                       th:value="${variables['primaAnual'] != null ? variables['primaAnual'].value : ''}">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Monto Asegurado ($)</label>
+                <input type="number" class="form-control" disabled
+                       th:value="${variables['montoAsegurado'] != null ? variables['montoAsegurado'].value : ''}">
+            </div>
+        </div>
+    </div>
+
+    <!-- Datos de análisis de riesgo -->
+    <div class="card mb-4">
+        <div class="card-header fw-bold">Datos de Análisis de Riesgo</div>
+        <div class="card-body row g-3">
+
+            <div class="col-md-3">
+                <label class="form-label">Antigüedad del Cliente (años)</label>
+                <input type="number" class="form-control" disabled
+                       th:value="${variables['antiguedadCliente'] != null ? variables['antiguedadCliente'].value : ''}">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Historial de Siniestralidad</label>
+                <input type="text" class="form-control" disabled
+                       th:value="${variables['historialSiniestralidad'] != null ? variables['historialSiniestralidad'].value : ''}">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Reporte de Centrales de Riesgo</label>
+                <input type="text" class="form-control" disabled
+                       th:value="${variables['reporteRiesgo'] != null ? variables['reporteRiesgo'].value : ''}">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Score Crediticio</label>
+                <input type="number" class="form-control" disabled
+                       th:value="${variables['scoreCrediticio'] != null ? variables['scoreCrediticio'].value : ''}">
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Ajuste de Prima Sugerido</label>
+                <input type="text" class="form-control" disabled
+                       th:value="${variables['ajustePrima'] != null ? variables['ajustePrima'].value : ''}">
+                <div class="form-text">Ajuste sugerido por las reglas automáticas.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decisión del suscriptor -->
+    <form th:action="@{/emision/tarea/{id}/complete(id=${taskId})}" method="post" class="card p-4">
+
+        <h5 class="mb-3">Decisión del Suscriptor</h5>
+
+        <div class="mb-3">
+            <label class="form-label">¿Aprobar Suscripción?</label>
+            <select name="suscripcionAprobada" class="form-select" required>
+                <option value="true">Aprobar</option>
+                <option value="false">Rechazar</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ajuste Final de Prima (%)</label>
+            <input type="text" name="ajustePrimaFinal" class="form-control" value="0"
+                   placeholder="Ej: -5, 0, +10">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Observaciones y Justificación</label>
+            <textarea name="observaciones" rows="4" class="form-control" required
+                      placeholder="Justifique su decisión (mínimo 20 caracteres)"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Registrar Decisión
+        </button>
+    </form>
+
+</div>
+
+</body>
+</html>

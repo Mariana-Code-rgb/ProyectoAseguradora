@@ -101,4 +101,3 @@ mvn clean package
 - En App-Gestion, un agente revisa y completa las tareas.
 - En App-Cliente, el cliente ve sus trámites pendientes y responde a las ofertas o confirma pagos.
 
-Puedes extender este README añadiendo diagramas de arquitectura, capturas de pantalla o una guía paso a paso para un flujo específico (por ejemplo, “Renovar una póliza de auto de principio a fin”).
